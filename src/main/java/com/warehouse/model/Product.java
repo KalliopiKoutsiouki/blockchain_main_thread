@@ -1,22 +1,28 @@
 package com.warehouse.model;
 
-import java.time.LocalDateTime;
-
 public class Product {
-    private String id;
+    private long id;
     private String productCode;
     private String productName;
     private double price;
-    private LocalDateTime timestamp;
     private String description;
     private String category;
     private String previousID;
 
-    public String getId() {
+    public Product(long id, String productCode, String productName, double price, String description, String category) {
+        this.id = id;
+        this.productCode = productCode;
+        this.productName = productName;
+        this.price = price;
+        this.description = description;
+        this.category = category;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -42,14 +48,6 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getDescription() {
@@ -83,7 +81,6 @@ public class Product {
                 ", productCode='" + productCode + '\'' +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
-                ", timestamp=" + timestamp +
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
                 ", previousID='" + previousID + '\'' +
