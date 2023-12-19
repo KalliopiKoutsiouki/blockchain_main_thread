@@ -1,18 +1,20 @@
 package com.warehouse.model;
 
+import com.google.gson.Gson;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
-public class BlockDto {
+public final class BlockDto {
     private String hash;
-    private String previousHash;
-    private String productData;
-    private long timeStamp;
+    private final String previousHash;
+    private ProductDto productData;
+    private final long timeStamp;
     private int nonce;
 
-    public BlockDto(String previousHash, String productData) {
+    public BlockDto(String previousHash, ProductDto productData) {
         this.previousHash = previousHash;
         this.productData = productData;
         this.timeStamp = new Date().getTime();
@@ -54,8 +56,23 @@ public class BlockDto {
         return previousHash;
     }
 
-    public void setProduct(String productData) {
-        this.productData = productData;
+
+    public ProductDto getProductData() {
+        return productData;
     }
+
+//    public ProductDto extractProductDto () {
+//        return new Gson().fromJson(this.getProductData(), ProductDto.class);
+//    }
+
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public int getNonce() {
+        return nonce;
+    }
+
 }
 

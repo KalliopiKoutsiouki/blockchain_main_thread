@@ -1,6 +1,6 @@
 package com.warehouse.model;
 
-public class Product {
+public class ProductDto {
     private long id;
     private String productCode;
     private String productName;
@@ -9,7 +9,7 @@ public class Product {
     private String category;
     private String previousID;
 
-    public Product(long id, String productCode, String productName, double price, String description, String category) {
+    public ProductDto(long id, String productCode, String productName, double price, String description, String category) {
         this.id = id;
         this.productCode = productCode;
         this.productName = productName;
