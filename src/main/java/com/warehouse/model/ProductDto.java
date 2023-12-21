@@ -1,7 +1,10 @@
 package com.warehouse.model;
 
+import com.warehouse.utils.InputValidator;
+
 public class ProductDto {
-    private long id;
+    private static int counter = 0;
+    private final long id;
     private String productCode;
     private String productName;
     private double price;
@@ -9,8 +12,9 @@ public class ProductDto {
     private String category;
     private String previousID;
 
-    public ProductDto(long id, String productCode, String productName, double price, String description, String category) {
-        this.id = id;
+    public ProductDto( String productCode, String productName, double price, String description, String category) {
+        counter++;
+        this.id = counter;
         this.productCode = productCode;
         this.productName = productName;
         this.price = price;
@@ -20,10 +24,6 @@ public class ProductDto {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getProductCode() {
@@ -76,6 +76,7 @@ public class ProductDto {
 
     @Override
     public String toString() {
+
         return "Product{" +
                 "id='" + id + '\'' +
                 ", productCode='" + productCode + '\'' +
@@ -86,4 +87,14 @@ public class ProductDto {
                 ", previousID='" + previousID + '\'' +
                 '}';
     }
+
+    public void validateProductDtoInput () throws IllegalArgumentException {
+        if ( !InputValidator.isValidString(this.productName) ||!InputValidator.isValidString(this.productCode) ||
+                !InputValidator.isValidPrice(this.price) || !InputValidator.isValidString(this.description) ||
+                !InputValidator.isValidString(this.category)) {
+            throw new IllegalArgumentException("Invalid input data");
+        }
+    }
+
+
 }

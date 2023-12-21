@@ -7,33 +7,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/blockchain")
-//@Api(tags = "BlockChainController", description = "Operations related to blockchain")
 public class BlockChainController {
 
     @Autowired
     BlockChainService blockChainService;
 
     @PostMapping("/save")
-//    @ApiOperation("Save a product to the blockchain")
     public void saveProduct(@RequestBody ProductDto product) {
         blockChainService.save(product);
     }
 
+    @PostMapping("/saveAll/{number}")
+    public void saveProduct(@RequestBody List<ProductDto> products, @PathVariable String number) {
+        products.forEach(p -> blockChainService.save(p));
+    }
     @GetMapping("/getAll")
     public List<ProductDto> getAllProducts() {
         return blockChainService.getAll();
     }
 
-    @GetMapping("/getById/{id}")
-    public ProductBlock getProductById(@PathVariable String id) {
-        return blockChainService.getById(id);
+    @PostMapping("/searchFor/{propertyName}/{value}")
+    public List<ProductDto> findByPropertyValue(@PathVariable String propertyName, @PathVariable String value) throws Exception {
+        return blockChainService.findByProductProperty(propertyName, value);
     }
 
-    @GetMapping("/findLastRecord")
-    public ProductBlock findLastRecord() {
-        return blockChainService.findLastRecord();
+    @GetMapping("/seePriceShifting/{productCode}")
+    public Map<String, String> getPriceThroughTime(@PathVariable String productCode) throws Exception {
+        return blockChainService.getPriceThroughTime(productCode);
     }
+
+//    @GetMapping("/getById/{id}")
+//    public ProductBlock getProductById(@PathVariable String id) {
+//        return blockChainService.getById(id);
+//    }
+//
+//    @GetMapping("/findLastRecord")
+//    public ProductBlock findLastRecord() {
+//        return blockChainService.findLastRecord();
+//    }
 }

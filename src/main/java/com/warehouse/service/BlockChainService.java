@@ -5,6 +5,8 @@ import com.warehouse.model.ProductDto;
 import com.warehouse.model.ProductBlock;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface BlockChainService {
 
@@ -12,7 +14,12 @@ public interface BlockChainService {
 
     List<ProductDto> getAll();
 
-    ProductBlock getById(String id);
+//    ProductBlock getById(String id);
+//
+//    ProductBlock findLastRecord();
 
-    ProductBlock findLastRecord();
+    List<ProductDto> findByProductProperty(String propertyName, String propertyValue) throws Exception;
+
+    Map<String, String> getPriceThroughTime(String productCode) throws Exception;
 }
+

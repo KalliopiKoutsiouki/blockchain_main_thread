@@ -34,7 +34,7 @@ class BlockchainPrjApplicationTests {
     BlockChainServiceImpl service;
     @Test
     void testSave() {
-        ProductDto productDto = new ProductDto(0, "1111", "firstProduct", 3, "this is the first product", "skincare");
+        ProductDto productDto = new ProductDto( "1111", "firstProduct", 3, "this is the first product", "skincare");
         ProductBlock expectedProductBlock = new ProductBlock();
         expectedProductBlock.setBlockJson("testBlockJson");
 

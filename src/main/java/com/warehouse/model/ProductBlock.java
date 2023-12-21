@@ -27,7 +27,6 @@ public final class ProductBlock {
     }
 
     public BlockDto extractBlockDto () {
-//        System.out.println(this.getBlockJson());
         return new Gson().fromJson(this.removeQuotesAndUnescape(this.getBlockJson()), BlockDto.class);
     }
 
