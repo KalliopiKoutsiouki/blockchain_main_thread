@@ -23,6 +23,12 @@ public class BlockChainServiceImpl implements BlockChainService{
     @Autowired
     BlockRepository blockRepository;
 
+    public BlockChainServiceImpl(BlockRepository blockRepository) {
+        this.blockRepository = blockRepository;
+    }
+
+    public BlockChainServiceImpl() {
+    }
 
     /**
      * Perfoms checks and saves a new block into the blockchain db
@@ -33,6 +39,11 @@ public class BlockChainServiceImpl implements BlockChainService{
         product.validateProductDtoInput();
         ProductBlock productBlock = getProductBlock(product);
         blockRepository.save(productBlock);
+    }
+
+    @Override
+    public void saveAll(List<ProductDto> productDtos)  throws IllegalArgumentException{
+        productDtos.forEach(this::save);
     }
 
     @Override

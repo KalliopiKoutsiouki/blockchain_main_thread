@@ -21,9 +21,9 @@ public class BlockChainController {
         blockChainService.save(product);
     }
 
-    @PostMapping("/saveAll/{number}")
-    public void saveProduct(@RequestBody List<ProductDto> products, @PathVariable String number) {
-        products.forEach(p -> blockChainService.save(p));
+    @PostMapping("/saveAll")
+    public void saveProduct(@RequestBody List<ProductDto> products) {
+         blockChainService.saveAll(products);
     }
     @GetMapping("/getAll")
     public List<ProductDto> getAllProducts() {

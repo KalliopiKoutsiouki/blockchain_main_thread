@@ -12,6 +12,9 @@ public interface BlockChainService {
 
     void save(ProductDto product);
 
+    void saveAll(List<ProductDto> productDtos);
+
+
     List<ProductDto> getAll();
 
 //    ProductBlock getById(String id);
