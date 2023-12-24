@@ -5,11 +5,13 @@ import com.warehouse.model.BlockDto;
 import com.warehouse.model.ProductBlock;
 import com.warehouse.model.ProductDto;
 import com.warehouse.repository.BlockRepository;
+import com.warehouse.utils.DateFormatter;
 import com.warehouse.utils.InputValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -96,11 +98,14 @@ public class BlockChainServiceImpl implements BlockChainService{
             List<BlockDto> blockDtos = extractBlockDto(allEntriesForProduct);
             for (BlockDto block : blockDtos) {
                 ProductDto productData = block.getProductData();
-                priceTimeMap.put(String.valueOf(block.getTimeStamp()), String.valueOf(productData.getPrice()));
+                String formattedDate = DateFormatter.getFormattedDate(block.getTimeStamp());
+                priceTimeMap.put(formattedDate, String.valueOf(productData.getPrice()));
             }
             return priceTimeMap;
         } else throw new Exception("No records found for product with product code: " + productCode);
     }
+
+
 
 
     public ProductBlock getProductBlock(ProductDto product) {
