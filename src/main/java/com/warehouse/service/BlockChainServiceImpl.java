@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -54,16 +53,6 @@ public class BlockChainServiceImpl implements BlockChainService{
         List<ProductDto> products = extractProductDtos(productBlocks);
         return products;
     }
-
-//    @Override
-//    public ProductBlock getById(String id) {
-//        return null;
-//    }
-//
-//    @Override
-//    public ProductBlock findLastRecord() {
-//        return null;
-//    }
 
     /**
      * Searches in db to find any products with the given property name and value also converts them to ProductDto
